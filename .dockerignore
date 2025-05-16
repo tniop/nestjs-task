@@ -3,3 +3,8 @@
 .dockerignore
 Dockerfile
 node_modules
+dist
+npm-debug.log
+.env
+.vscode
+*.md
