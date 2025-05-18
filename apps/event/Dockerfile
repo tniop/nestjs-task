@@ -27,4 +27,4 @@ COPY --from=builder /app/node_modules ./node_modules
 # 5. 환경 설정
 ENV NODE_ENV development
 EXPOSE 3002
-CMD ["node", "dist/apps/event/main"]
+CMD ["node", "dist/main.js"]

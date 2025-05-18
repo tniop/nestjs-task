@@ -27,4 +27,4 @@ COPY --from=builder /app/node_modules ./node_modules
 # 5. 환경 설정
 ENV NODE_ENV development
 EXPOSE 3000
-CMD ["node", "dist/apps/gateway/main"]
+CMD ["node", "dist/main.js"]
