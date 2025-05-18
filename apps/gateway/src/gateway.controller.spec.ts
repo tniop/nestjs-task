@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { GatewayController } from './gateway.controller';
+import { GatewayController } from './app.controller';
 import { GatewayService } from './gateway.service';
 
 describe('GatewayController', () => {
