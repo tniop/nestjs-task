@@ -5,7 +5,7 @@ import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 export class AuthProxyMiddleware implements NestMiddleware {
   use(req: any, res: any, next: () => void) {
     const proxy = createProxyMiddleware({
-      target: process.env.AUTH_API_URL || 'http://auth:3001',
+      target: process.env.AUTH_API_URL,
       changeOrigin: true,
       pathRewrite: {
         '^/auth': '/auth',

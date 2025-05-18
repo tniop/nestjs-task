@@ -5,7 +5,7 @@ import { createProxyMiddleware, fixRequestBody } from 'http-proxy-middleware';
 export class EventProxyMiddleware implements NestMiddleware {
   use(req: any, res: any, next: () => void) {
     const proxy = createProxyMiddleware({
-      target: process.env.EVENT_API_URL || 'http://event:3002',
+      target: process.env.EVENT_API_URL,
       changeOrigin: true,
       pathRewrite: { '^/event': '/event' },
       on: {
