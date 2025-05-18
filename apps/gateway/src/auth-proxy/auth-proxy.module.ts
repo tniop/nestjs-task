@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { AuthProxyMiddleware } from './auth-proxy.middleware';
 import { AuthProxyController } from './auth-proxy.controller';
 import { AuthProxyService } from './auth-proxy.service';
@@ -9,6 +14,8 @@ import { AuthProxyService } from './auth-proxy.service';
 })
 export class AuthProxyModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthProxyMiddleware).forRoutes('/auth*');
+    consumer
+      .apply(AuthProxyMiddleware)
+      .forRoutes({ path: 'auth*', method: RequestMethod.ALL });
   }
 }

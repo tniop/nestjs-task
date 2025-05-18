@@ -8,7 +8,7 @@ export class AuthProxyMiddleware implements NestMiddleware {
       target: process.env.AUTH_API_URL || 'http://auth:3001',
       changeOrigin: true,
       pathRewrite: {
-        '^/auth': '',
+        '^/auth': '/auth',
       },
       on: {
         proxyReq: fixRequestBody,

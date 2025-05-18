@@ -7,7 +7,7 @@ export class EventProxyMiddleware implements NestMiddleware {
     const proxy = createProxyMiddleware({
       target: process.env.EVENT_API_URL || 'http://event:3002',
       changeOrigin: true,
-      pathRewrite: { '^/event': '' },
+      pathRewrite: { '^/event': '/event' },
       on: {
         proxyReq: fixRequestBody,
       },
