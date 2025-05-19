@@ -7,9 +7,17 @@ export class EventProxyMiddleware implements NestMiddleware {
     const proxy = createProxyMiddleware({
       target: process.env.EVENT_API_URL,
       changeOrigin: true,
-      pathRewrite: { '^/event': '/event' },
+      pathRewrite: {
+        '^/event': '/',
+      },
       on: {
-        proxyReq: fixRequestBody,
+        proxyReq: (proxyReq, req) => {
+          if (req.headers.authorization) {
+            // 클라이언트에서 전달된 액세스 토큰 사용
+            proxyReq.setHeader('Authorization', req.headers.authorization);
+          }
+          fixRequestBody(proxyReq, req); // 본문 처리 필수
+        },
       },
     });
     proxy(req, res, next);

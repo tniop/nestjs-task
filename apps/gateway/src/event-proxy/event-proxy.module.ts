@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { EventProxyMiddleware } from './event-proxy.middleware';
 import { EventProxyController } from './event-proxy.controller';
 import { EventProxyService } from './event-proxy.service';
@@ -9,6 +14,8 @@ import { EventProxyService } from './event-proxy.service';
 })
 export class EventProxyModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(EventProxyMiddleware).forRoutes('/event');
+    consumer
+      .apply(EventProxyMiddleware)
+      .forRoutes({ path: 'event*', method: RequestMethod.ALL });
   }
 }
